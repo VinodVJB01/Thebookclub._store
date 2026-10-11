@@ -1,0 +1,39 @@
+name: Fetch book covers
+
+# Run it from the repo's "Actions" tab -> "Fetch book covers" -> "Run workflow".
+# It downloads the real cover + description for every book and commits them to the repo.
+on:
+  workflow_dispatch:
+    inputs:
+      retry:
+        description: "Also retry books that had no cover last time"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-covers
+  cancel-in-progress: false
+
+jobs:
+  covers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Download covers (saves progress as it goes)
+        env:
+          RETRY: ${{ inputs.retry && '1' || '' }}
+          GOOGLE_BOOKS_KEY: ${{ secrets.GOOGLE_BOOKS_KEY }}
+        run: node tools/fetch-covers.mjs
+      - name: Commit results
+        run: |
+          git config user.name "covers-bot"
+          git config user.email "covers-bot@users.noreply.github.com"
+          git add covers assets/enriched.js
+          git diff --cached --quiet && echo "Nothing new." || (git commit -m "Add book covers and descriptions" && git push)

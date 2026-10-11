@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>The Book Club – Bestselling Books, Shipped Pan-India</title>
+<meta name="description" content="Browse 1,200+ English and Hindi bestsellers from The Book Club (@thebookclub._store). Pan-India shipping. Order in a few taps via Instagram DM.">
+<meta name="theme-color" content="#f5f2ec">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://www.googleapis.com https://openlibrary.org; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta property="og:title" content="The Book Club – Bestselling Books">
+<meta property="og:description" content="English & Hindi bestsellers, shipped Pan-India. Order via Instagram DM.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/jpeg" href="assets/logo-96.jpg">
+<link rel="apple-touch-icon" href="assets/logo-256.jpg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Book Club">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="nav" id="nav">
+  <div class="nav-in glass">
+    <a class="brand" href="./" aria-label="The Book Club Store – home"><img class="logo" src="assets/logo-144.jpg" srcset="assets/logo-96.jpg 96w, assets/logo-144.jpg 144w, assets/logo-256.jpg 256w" sizes="56px" width="56" height="56" alt="The Book Club Store logo" decoding="async"></a>
+    <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search title, author, ISBN…" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" aria-label="Search books"><button type="button" class="qx" id="qx" aria-label="Clear search" hidden>✕</button><kbd>/</kbd></label>
+    <div class="tools">
+      <a class="aboutbtn" href="about.html">About Us</a>
+      <button class="cartbtn" id="cartBtn" aria-label="Open cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h13l-1.4 8.2a2 2 0 0 1-2 1.6H9a2 2 0 0 1-2-1.6L5.5 4H3"/><circle cx="9.5" cy="20" r="1"/><circle cx="16.5" cy="20" r="1"/></svg><span class="lbl">Cart</span><b id="cc">0</b></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-txt">
+      <p class="eyebrow">English &amp; Hindi bestsellers</p>
+      <h1>Stories worth<br>carrying home.</h1>
+      <p class="lede">Hand-picked bestsellers and Hindi classics, shipped across India. Fill your cart, copy the order and send it to us on Instagram — that's it.</p>
+      <div class="cta"><a class="btn pri" href="#shop" id="browse">Browse books</a><a class="btn ghost" href="https://instagram.com/thebookclub._store" target="_blank" rel="noopener noreferrer">@thebookclub._store</a></div>
+      <ul class="stats"><li><b id="st1">1,245</b><span>titles</span></li><li><b>2</b><span>languages</span></li><li><b>Pan-India</b><span>shipping</span></li></ul>
+    </div>
+  </section>
+
+  <section class="shop" id="shop">
+    <div class="ctl-row">
+      <div class="seg" id="lang" role="tablist" aria-label="Language"><i class="th"></i><button data-l="en" class="on">English</button><button data-l="hi">हिन्दी</button></div>
+      <div class="seg" id="seg" role="tablist" aria-label="Category"><i class="th"></i><button data-c="" class="on">All</button><button data-c="Fiction">Fiction</button><button data-c="Non-Fiction">Non-Fiction</button></div>
+    </div>
+    <div class="chips" id="gchips" hidden></div>
+    <div class="filters glass">
+      <label>Publisher<select id="g"><option value="">All</option></select></label>
+      <label>Binding<select id="b"><option value="">All</option></select></label>
+      <label>Min ₹<input id="min" type="number" inputmode="numeric" min="0" placeholder="0"></label>
+      <label>Max ₹<input id="max" type="number" inputmode="numeric" min="0" placeholder="Any"></label>
+      <label>Sort<select id="s"><option value="feat">Featured</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option><option value="az">Title A–Z</option></select></label>
+      <button class="btn ghost sm" id="reset" type="button">Reset</button>
+    </div>
+    <p id="cnt" class="cnt" aria-live="polite"></p>
+    <div id="grid" class="grid"></div>
+    <div id="none" class="none" hidden><span>🔎</span><p>No books match your search.</p><button class="btn ghost sm" id="reset2">Clear filters</button></div>
+    <div class="more"><button class="btn ghost" id="more" hidden>Show more books</button><div id="sentinel"></div></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p><b>The Book Club</b> · <a href="https://instagram.com/thebookclub._store" target="_blank" rel="noopener noreferrer">@thebookclub._store</a></p>
+  <p class="mut">Orders are confirmed over Instagram DM. Prices marked * are estimates and will be confirmed by the seller. Book covers belong to their respective publishers.</p>
+</footer>
+
+<!-- Book detail -->
+<section class="layer" id="sheet" aria-hidden="true">
+  <div class="bk" data-close></div>
+  <div class="panel glass sheetp" role="dialog" aria-modal="true" aria-label="Book details">
+    <div class="grab" id="grab"><i></i></div>
+    <button class="x" data-close aria-label="Close">✕</button>
+    <div class="sbody" id="sbody"></div>
+  </div>
+</section>
+
+<!-- Cart -->
+<section class="layer" id="cart" aria-hidden="true">
+  <div class="bk" data-close></div>
+  <aside class="panel glass cartp" role="dialog" aria-modal="true" aria-label="Your cart">
+    <div class="ch"><b>Your cart</b><button class="x" data-close aria-label="Close cart">✕</button></div>
+    <div class="mood"><span class="em" id="em">📚</span><div><b id="mw">Pick your first book</b><div class="mbar"><i id="mb"></i></div></div></div>
+    <div id="items" class="items"></div>
+    <div class="cfoot">
+      <div class="sumrow"><span id="cn">0 books</span><button class="lnk" id="clr">Clear cart</button></div>
+      <div class="sumrow tot"><span>Total</span><b id="ct">₹0</b></div>
+      <button class="btn pri block" id="checkout">Checkout</button>
+      <p class="hint">Shipping and payment are confirmed by the seller over Instagram DM.</p>
+    </div>
+  </aside>
+</section>
+
+<!-- Checkout -->
+<section class="layer" id="co" aria-hidden="true">
+  <div class="bk" data-close></div>
+  <div class="panel glass cop" role="dialog" aria-modal="true" aria-label="Checkout">
+    <div class="ch"><b>Checkout</b><button class="x" data-close aria-label="Close checkout">✕</button></div>
+    <ol class="steps" id="steps"><li class="on" data-s="1"><i>1</i>Details</li><li data-s="2"><i>2</i>Copy order</li><li data-s="3"><i>3</i>Place order</li></ol>
+    <div class="cobody">
+      <div class="pane on" data-s="1">
+        <h4>Where should we deliver?</h4>
+        <input id="fn" placeholder="Full name *" autocomplete="name">
+        <input id="fp" type="tel" placeholder="Phone / WhatsApp number *" autocomplete="tel" inputmode="tel">
+        <textarea id="fa" rows="3" placeholder="Full delivery address with pincode *" autocomplete="street-address"></textarea>
+        <input id="fnote" placeholder="Note for the seller (optional)">
+        <div class="mini" id="mini"></div>
+      </div>
+      <div class="pane" data-s="2">
+        <h4>Copy your order</h4>
+        <p class="mut">Tap the button to copy your full order. You'll paste it into our Instagram chat next.</p>
+        <textarea id="fb" readonly rows="11"></textarea>
+        <button class="btn pri block" id="copy">Copy order</button>
+        <button class="lnk center" id="manual" hidden>Copying didn't work? I've copied it manually</button>
+      </div>
+      <div class="pane" data-s="3">
+        <h4>Place your order</h4>
+        <p class="mut">Instagram opens our chat. <b>Paste</b> the copied order and tap <b>send</b> — we'll confirm shipping and payment there.</p>
+        <a class="btn ig block" id="dm" href="https://ig.me/m/thebookclub._store" target="_blank" rel="noopener noreferrer">Place order on Instagram</a>
+        <button class="lnk center" id="recopy">Copy order again</button>
+      </div>
+    </div>
+    <div class="cofoot"><button class="btn ghost" id="back">Back</button><button class="btn pri" id="next">Continue</button></div>
+  </div>
+</section>
+
+<div id="toast" role="status"></div>
+<noscript><p style="padding:24px;text-align:center">Please enable JavaScript to browse the store.</p></noscript>
+<script src="assets/books.js"></script>
+<script src="assets/enriched.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
